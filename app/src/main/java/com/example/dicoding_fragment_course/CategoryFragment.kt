@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.commit
 import com.example.dicoding_fragment_course.databinding.FragmentCategoryBinding
 
 
@@ -39,10 +40,9 @@ class CategoryFragment : Fragment(), View.OnClickListener {
             detailCategoryFragment.desc = desc
 
             val fragmentManager = parentFragmentManager
-            fragmentManager.beginTransaction().apply {
-                replace(R.id.frameContainer, detailCategoryFragment, DetailCategoryFragment::class.java.simpleName)
+            fragmentManager.commit{
                 addToBackStack(null)
-                commit()
+                replace(R.id.frameContainer, detailCategoryFragment, DetailCategoryFragment::class.java.simpleName)
             }
         }
     }

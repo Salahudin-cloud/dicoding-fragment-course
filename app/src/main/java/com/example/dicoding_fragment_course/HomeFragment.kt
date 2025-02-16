@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.commit
 import com.example.dicoding_fragment_course.databinding.FragmentHomeBinding
 import java.util.logging.Logger
 import kotlin.math.log
@@ -33,13 +34,22 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
+//        if (v?.id == R.id.btn_category) {
+//            val categoryFragment = CategoryFragment()
+//            val fragmentManager = parentFragmentManager
+//            fragmentManager.beginTransaction().apply {
+//                replace(R.id.frameContainer, categoryFragment, CategoryFragment::class.java.simpleName)
+//                addToBackStack(null)
+//                commit()
+//            }
+//        }
+
         if (v?.id == R.id.btn_category) {
             val categoryFragment = CategoryFragment()
             val fragmentManager = parentFragmentManager
-            fragmentManager.beginTransaction().apply {
-                replace(R.id.frameContainer, categoryFragment, CategoryFragment::class.java.simpleName)
+            fragmentManager.commit{
                 addToBackStack(null)
-                commit()
+                replace(R.id.frameContainer, categoryFragment, CategoryFragment::class.java.simpleName)
             }
         }
     }

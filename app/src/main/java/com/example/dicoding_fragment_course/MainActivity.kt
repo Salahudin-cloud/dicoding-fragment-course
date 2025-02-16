@@ -6,6 +6,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import com.example.dicoding_fragment_course.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -24,13 +26,22 @@ class MainActivity : AppCompatActivity() {
         val homeFragment = HomeFragment()
         val fragment = fragmentManager.findFragmentByTag(HomeFragment::class.java.simpleName)
 
-        if (fragment !is HomeFragment) {
-            Log.d("My Fragment", "Fragment Name : " + HomeFragment::class.java.simpleName)
+//        if (fragment !is HomeFragment) {
+//            Log.d("My Fragment", "Fragment Name : " + HomeFragment::class.java.simpleName)
+//
+//            fragmentManager
+//                .beginTransaction()
+//                .add(R.id.frameContainer, homeFragment, HomeFragment::class.java.simpleName)
+//                .commit()
+//        }
 
-            fragmentManager
-                .beginTransaction()
-                .add(R.id.frameContainer, homeFragment, HomeFragment::class.java.simpleName)
-                .commit()
+
+        if (fragment !is HomeFragment) {
+            Log.d("MyFlexibleFragment", "Fragment Name :" + HomeFragment::class.java.simpleName)
+
+            fragmentManager.commit{
+                add(R.id.frameContainer, homeFragment, HomeFragment::class.java.simpleName)
+            }
         }
 
     }
